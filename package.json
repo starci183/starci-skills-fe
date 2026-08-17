@@ -1,0 +1,29 @@
+{
+  "name": "starci-skills-fe",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Read-only console over the StarCi trust tree's machine-local state: workspace routes, design registries and sessions.",
+  "scripts": {
+    "dev": "vite --port 8090",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --port 8090"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.469.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tailwind-merge": "^2.6.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.14",
+    "@types/node": "^26.2.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.0.4",
+    "tailwindcss": "^4.1.14",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.9"
+  }
+}

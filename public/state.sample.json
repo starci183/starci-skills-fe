@@ -1,0 +1,107 @@
+{
+  "scannedAt": "2026-08-18T00:00:00.000Z",
+  "source": "<disk>/<source-repo>",
+  "workspaces": [
+    {
+      "project": "nivo",
+      "role": "be",
+      "route": ".workspace/nivo/be/config.json",
+      "diskPath": "<disk>/nivo-backend",
+      "diskPathExists": true,
+      "contract": null,
+      "contractExists": false,
+      "contractSource": null,
+      "branch": "main",
+      "recordedHead": "aaaaaaaaaaaa",
+      "liveHead": "aaaaaaaaaaaa",
+      "verdict": "ok",
+      "reason": "checkout and recorded evidence still hold"
+    },
+    {
+      "project": "nivo",
+      "role": "fe",
+      "route": ".workspace/nivo/fe/config.json",
+      "diskPath": "<disk>/nivo-fe",
+      "diskPathExists": true,
+      "contract": null,
+      "contractExists": false,
+      "contractSource": null,
+      "branch": "main",
+      "recordedHead": "bbbbbbbbbbbb",
+      "liveHead": "bbbbbbbbbbbb",
+      "verdict": "stale",
+      "reason": "frontend role with no contract recorded — look for the registry before trusting this"
+    },
+    {
+      "project": "starci-academy",
+      "role": "be",
+      "route": ".workspace/starci-academy/be/config.json",
+      "diskPath": "<disk>/starci-academy-backend",
+      "diskPathExists": true,
+      "contract": null,
+      "contractExists": false,
+      "contractSource": null,
+      "branch": "mtp",
+      "recordedHead": "cccccccccccc",
+      "liveHead": "dddddddddddd",
+      "verdict": "stale",
+      "reason": "recorded head is behind the checkout"
+    },
+    {
+      "project": "starci-academy",
+      "role": "fe",
+      "route": ".workspace/starci-academy/fe/config.json",
+      "diskPath": "<disk>/starci-academy-fe",
+      "diskPathExists": true,
+      "contract": "src/components/contracts/index.ts",
+      "contractExists": true,
+      "contractSource": "discovered:src/components/contracts/index.ts",
+      "branch": "main",
+      "recordedHead": "eeeeeeeeeeee",
+      "liveHead": "eeeeeeeeeeee",
+      "verdict": "ok",
+      "reason": "checkout and recorded evidence still hold"
+    }
+  ],
+  "projects": [
+    {
+      "project": "starci-academy",
+      "root": ".worktrees/starci-academy",
+      "roots": {"registries": true, "sessions": true, "cache": true},
+      "registry": {
+        "branch": "codex/fe-design-registry/starci-academy",
+        "locked": true,
+        "clean": true,
+        "ownedHere": true,
+        "counts": {
+          "layoutsQueued": 1,
+          "layoutsApproved": 0,
+          "layoutsRejected": 0,
+          "blocksQueued": 0,
+          "blocksApproved": 0,
+          "blocksRejected": 0
+        }
+      },
+      "sessions": [
+        {
+          "id": "course-kpi/2026-08-18",
+          "surface": "course-kpi",
+          "phase": "layout",
+          "rounds": 1,
+          "acceptedHashes": [],
+          "queued": [
+            {
+              "hash": "f5534ef5e7fbe30c385108fb95702a64ac66d905414e0f7105873d67822be54c",
+              "phase": "layout",
+              "state": "queued"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    "nivo: has a workspace route but no worktree root — nothing can be recorded",
+    "the workflow root is absent, so no skill can append its phase"
+  ]
+}

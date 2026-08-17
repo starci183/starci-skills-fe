@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface: oklch(18% 0.01 260);
+  --color-surface-raised: oklch(22% 0.012 260);
+  --color-line: oklch(30% 0.012 260);
+  --color-ink: oklch(93% 0.005 260);
+  --color-ink-muted: oklch(68% 0.01 260);
+  --color-ok: oklch(72% 0.15 155);
+  --color-warn: oklch(80% 0.13 85);
+  --color-bad: oklch(65% 0.19 25);
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}

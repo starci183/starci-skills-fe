@@ -1,0 +1,6 @@
+node_modules
+dist
+
+# The scanned state of one machine. The console reads it; the repository never carries it, because a
+# disk path is true on exactly one machine — the same rule the trust tree holds itself to.
+public/state.json
