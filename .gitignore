@@ -1,5 +1,7 @@
 node_modules
 dist
+coverage
+test-results
 
 # The scanned state of one machine. The console reads it; the repository never carries it, because a
 # disk path is true on exactly one machine — the same rule the trust tree holds itself to.

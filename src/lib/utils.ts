@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
-export function cn(...inputs: ClassValue[]) {
+/** Merges conditional utility classes while preserving Tailwind precedence. */
+export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs))
 }

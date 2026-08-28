@@ -1,0 +1,21 @@
+/** Visible Vietnamese copy belongs at this data boundary, not in panel structure. */
+export const panelCopy = {
+    noProjects: "Chưa project nào có root worktree.",
+    noSessions: "Chưa session nào được mở. Layout là skill mở session — không có orchestrator.",
+    details: "chi tiết",
+    waiting: "Đang chờ thầy duyệt",
+    history: "Lịch sử",
+    noHistory: "Session chưa có lượt nào được ghi.",
+    produced: "Đã sinh",
+    rejected: "Bị từ chối",
+    roots: "Roots",
+    registry: "Registry worktree",
+    noProjectRoots: "Chưa project nào có root worktree.",
+    allRoots: "cả ba",
+    missingRoots: "thiếu",
+    noRegistry: "không có",
+    accepted: "Đã chấp nhận",
+    pending: "Đang chờ duyệt",
+    noRoute: "Chưa có route nào. Khai project rồi chạy /starci-init.",
+    missingDisk: "không còn trên đĩa",
+} as const

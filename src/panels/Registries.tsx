@@ -3,24 +3,32 @@ import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/compo
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table"
 import {CopyCommand, Path, Verdict} from "@/components/verdict"
 import {RegistryDetail} from "@/panels/RegistryDetail"
+import {Heading} from "@/components/leaves/Heading"
+import {panelAmberTextClassName, panelForegroundClassName, panelGreenTextClassName, panelMutedTextClassName, panelStackTightClassName} from "@/panels/classNames"
+import {panelCopy} from "@/resources/panelCopy"
 
-function Counts({counts}: {counts: {queued: number; approved: number; rejected: number}}) {
+type RegistryCounts = {queued: number; approved: number; rejected: number}
+type CountsProps = {counts: RegistryCounts}
+type RegistriesProps = {projects: ProjectState[]}
+
+const Counts = (props: CountsProps) => {
     return (
-        <div className="flex flex-col gap-0.5 font-mono text-xs">
-            <span className={counts.queued > 0 ? "text-amber-400" : "text-muted-foreground"}>{counts.queued} queued</span>
-            <span className={counts.approved > 0 ? "text-emerald-400" : "text-muted-foreground"}>{counts.approved} approved</span>
-            <span className="text-muted-foreground">{counts.rejected} rejected</span>
+        <div className={panelStackTightClassName}>
+            <span className={props.counts.queued > 0 ? panelAmberTextClassName : panelMutedTextClassName}>{props.counts.queued} queued</span>
+            <span className={props.counts.approved > 0 ? panelGreenTextClassName : panelMutedTextClassName}>{props.counts.approved} approved</span>
+            <span className={panelMutedTextClassName}>{props.counts.rejected} rejected</span>
         </div>
     )
 }
 
-export function Registries({projects}: {projects: ProjectState[]}) {
+/** Renders project registry health and read-only detail access. */
+export const Registries = (props: RegistriesProps) => {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Registries</CardTitle>
+                            <CardTitle><Heading level={2} content="Registries" /></CardTitle>
                 <CardDescription>
-                    Where a decision survives. A registry is a <span className="text-foreground">locked</span> linked worktree on
+                    Where a decision survives. A registry is a <span className={panelForegroundClassName}>locked</span> linked worktree on
                     the project's own branch, owned by this Source's git — anything else is not this Source's state.
                 </CardDescription>
             </CardHeader>
@@ -28,50 +36,50 @@ export function Registries({projects}: {projects: ProjectState[]}) {
                 <Table>
                     <TableHeader>
                         <TableRow>
-                            <TableHead className="w-[16rem]">Project</TableHead>
-                            <TableHead className="w-[9rem]">Roots</TableHead>
+                            <TableHead>Project</TableHead>
+                            <TableHead>Roots</TableHead>
                             <TableHead>Registry</TableHead>
-                            <TableHead className="w-[9rem]">Layouts</TableHead>
-                            <TableHead className="w-[9rem]">Blocks</TableHead>
-                            <TableHead className="w-[7rem]" />
+                            <TableHead>Layouts</TableHead>
+                            <TableHead>Blocks</TableHead>
+                            <TableHead />
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {projects.length === 0 ? (
+                        {props.projects.length === 0 ? (
                             <TableRow>
-                                <TableCell colSpan={6} className="text-muted-foreground">Chưa project nào có root worktree.</TableCell>
+                                <TableCell colSpan={6}>{panelCopy.noProjectRoots}</TableCell>
                             </TableRow>
                         ) : (
-                            projects.map((p) => {
+                            props.projects.map((p) => {
                                 const r = p.registry
                                 const missing = (["registries", "sessions", "cache"] as const).filter((k) => !p.roots[k])
                                 const sound = Boolean(r && r.locked && r.clean && r.ownedHere)
                                 return (
-                                    <TableRow key={p.project} className="align-top">
+                                    <TableRow key={p.project}>
                                         <TableCell>
-                                            <div className="font-medium">{p.project}</div>
+                                            <div>{p.project}</div>
                                             <Path muted>{p.root}</Path>
                                         </TableCell>
                                         <TableCell>
                                             {missing.length === 0 ? (
-                                                <Verdict tone="ok">cả ba</Verdict>
+                                                <Verdict tone="ok">{panelCopy.allRoots}</Verdict>
                                             ) : (
-                                                <Verdict tone="warn">{`thiếu ${missing.join(", ")}`}</Verdict>
+                                                <Verdict tone="warn">{`${panelCopy.missingRoots} ${missing.join(", ")}`}</Verdict>
                                             )}
                                         </TableCell>
                                         <TableCell>
                                             {r ? (
-                                                <div className="flex flex-col gap-1.5">
+                                                <div>
                                                     <Verdict tone={sound ? "ok" : "bad"}>
                                                         {[r.locked ? "locked" : "unlocked", r.clean ? "clean" : "dirty", r.ownedHere ? "owned here" : "foreign git"].join(" · ")}
                                                     </Verdict>
                                                     <Path muted>{r.branch}</Path>
                                                 </div>
                                             ) : (
-                                                <Verdict tone="warn">không có</Verdict>
+                                                <Verdict tone="warn">{panelCopy.noRegistry}</Verdict>
                                             )}
                                             {sound ? null : (
-                                                <div className="mt-1.5">
+                                                <div>
                                                     <CopyCommand command={`/starci-init ${p.project}`} />
                                                 </div>
                                             )}

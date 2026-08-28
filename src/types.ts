@@ -11,15 +11,13 @@ export interface ConsoleState {
     warnings: string[]
 }
 
+/** A workspace route snapshot and its freshness verdict. */
 export interface Workspace {
     project: string
     role: string
     route: string
     diskPath: string | null
     diskPathExists: boolean
-    contract: string | null
-    contractExists: boolean
-    contractSource: string | null
     branch: string | null
     recordedHead: string | null
     liveHead: string | null
@@ -28,6 +26,7 @@ export interface Workspace {
     reason: string
 }
 
+/** A project snapshot containing registry and session state. */
 export interface ProjectState {
     project: string
     root: string | null
@@ -36,6 +35,7 @@ export interface ProjectState {
     sessions: SessionState[]
 }
 
+/** The registry snapshot, including artifact counts and index contents. */
 export interface RegistryState {
     branch: string | null
     locked: boolean
@@ -52,6 +52,7 @@ export interface RegistryState {
     rejections: string[]
 }
 
+/** One registry artifact entry and its measured metadata. */
 export interface RegistryEntry {
     kind: "layouts" | "blocks"
     state: "queued" | "approved" | "rejected"
@@ -63,6 +64,7 @@ export interface RegistryEntry {
     changedAt: string
 }
 
+/** A design-session snapshot with all accepted and refused rounds. */
 export interface SessionState {
     id: string
     file: string
@@ -75,6 +77,7 @@ export interface SessionState {
     history: Round[]
 }
 
+/** One recorded design-session round and its outcomes. */
 export interface Round {
     number: number
     phase: string
